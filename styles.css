@@ -1,0 +1,34 @@
+h1 {
+
+text-align: center;
+
+}
+
+.outer-container {
+
+display: flex;
+justify-content: center;
+border: 2px solid black;
+
+}
+
+
+.form-container {
+
+border: 2px solid black;
+
+}
+
+.form div > label {
+
+display: inline-block;
+width: 100px;
+
+}
+
+div button {
+
+justify-self: center;
+
+}
+
