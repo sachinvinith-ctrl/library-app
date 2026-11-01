@@ -32,12 +32,30 @@
           </div>
           <div>
             <label for="pages">Total Pages:</label>
-            <input type="text" id="pages" placeholder="578" name="pages" />
+            <input type="number" id="pages" placeholder="578" name="pages" />
           </div>
-          <div>
-            <label for="is-read">Is it Read:</label>
-            <input type="text" id="is-read" placeholder="Yes" name="is-read" />
-          </div>
+          <fieldset>
+            <legend>Is The Book Read?</legend>
+            <div>
+              <label for="read">Read</label>
+              <input
+                type="radio"
+                id="read"
+                name="read-or-not"
+                value="Read"
+                checked
+              />
+            </div>
+            <div>
+              <label for="not-read">Not Read</label>
+              <input
+                type="radio"
+                id="not-read"
+                name="read-or-not"
+                value="Not-Read"
+              />
+            </div>
+          </fieldset>
           <div>
             <button id="submit" type="submit">Submit</button>
           </div>
