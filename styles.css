@@ -14,14 +14,14 @@ text-align: center;
 
 display: flex;
 justify-content: center;
-border: 2px solid black;
 
 }
 
 
 .form-container {
 
-border: 2px solid black;
+border: 1px solid black;
+padding: 20px;
 
 }
 

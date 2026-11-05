@@ -17,24 +17,6 @@ function addBookToLibrary() {
 
 };
 
-const captureInput = document.querySelector("#form");
-
-captureInput.addEventListener("submit", (event) => {
-
-
-event.preventDefault();
-
-let name = document.querySelector("#title").value;
-let author = document.querySelector("#author").value;
-let pages = document.querySelector("#pages").value;
-let read = document.querySelector("input[name='read-or-not']:checked").value;
-
-const newBook = new bookConstructor(name, author, pages, read);
-
-captureInput.reset();   
-
-myLibrary.push(newBook);
-
 const createTable = document.createElement("table");
 const createHeaderOne = document.createElement("th");
 const createHeaderTwo = document.createElement("th");
@@ -59,8 +41,33 @@ createTable.style.marginTop = "20px";
 
 document.body.appendChild(createTable);
 
+const captureInput = document.querySelector("#form");
+
+captureInput.addEventListener("submit", (event) => {
+
+
+
+event.preventDefault();
+
+
+
+let name = document.querySelector("#title").value;
+let author = document.querySelector("#author").value;
+let pages = document.querySelector("#pages").value;
+let read = document.querySelector("input[name='read-or-not']:checked").value;
+
+const newBook = new bookConstructor(name, author, pages, read);
+console.log(newBook);
+
+captureInput.reset();   
+
+myLibrary.push(newBook);
+
+
+
 
 for(let i = 0; i < myLibrary.length; i++) {
+
 
 const createNewRow = createTable.insertRow();
 const createNewCell = createNewRow.insertCell()
@@ -82,6 +89,7 @@ createTable.append(createNewCell, createNewCellOne, createNewCellTwo, createNewC
 
 
 })
+
 
 
 function displayBooks() {
