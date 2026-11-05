@@ -66,23 +66,24 @@ myLibrary.push(newBook);
 
 
 
-for(let i = 0; i < myLibrary.length; i++) {
+for(let i = 0; i < 1; i++) {
 
 
 const createNewRow = createTable.insertRow();
 const createNewCell = createNewRow.insertCell()
-createNewCell.textContent = myLibrary[i].name;
+createNewCell.textContent = myLibrary.at(-1).name;
 createNewCell.style.border = "1px solid black";
 const createNewCellOne = createNewRow.insertCell()
-createNewCellOne.textContent = myLibrary[i].author;
+createNewCellOne.textContent = myLibrary.at(-1).author;
 createNewCellOne.style.border = "1px solid black";
 const createNewCellTwo = createNewRow.insertCell()
-createNewCellTwo.textContent = myLibrary[i].pages;
+createNewCellTwo.textContent = myLibrary.at(-1).pages;
 createNewCellTwo.style.border = "1px solid black";
 const createNewCellThree = createNewRow.insertCell()
-createNewCellThree.textContent = myLibrary[i].read;
+createNewCellThree.textContent = myLibrary.at(-1).read;
 createNewCellThree.style.border = "1px solid black";
 createTable.append(createNewCell, createNewCellOne, createNewCellTwo, createNewCellThree);
+
 
 }
 
