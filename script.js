@@ -1,5 +1,6 @@
 const myLibrary = [];
 
+
 function bookConstructor(name, author, pages, read) {
 
 this.id = crypto.randomUUID();
@@ -22,6 +23,7 @@ const createHeaderOne = document.createElement("th");
 const createHeaderTwo = document.createElement("th");
 const createHeaderThree = document.createElement("th");
 const createHeaderFour = document.createElement("th");
+const createHeaderFive = document.createElement("th");
 const createRow = document.createElement("tr");
 
 createHeaderOne.textContent = "Book Title";
@@ -32,8 +34,10 @@ createHeaderThree.textContent = "Total Pages";
 createHeaderThree.style.border = "1px solid black";
 createHeaderFour.textContent = "Is The Book Read?";
 createHeaderFour.style.border = "1px solid black";
+createHeaderFive.textContent = "Remove The Book";
+createHeaderFive.style.border = "1px solid black";
 
-createRow.append(createHeaderOne, createHeaderTwo, createHeaderThree, createHeaderFour);
+createRow.append(createHeaderOne, createHeaderTwo, createHeaderThree, createHeaderFour, createHeaderFive);
 createTable.appendChild(createRow);
 
 createTable.style.border = "1px solid black";
@@ -45,11 +49,7 @@ const captureInput = document.querySelector("#form");
 
 captureInput.addEventListener("submit", (event) => {
 
-
-
 event.preventDefault();
-
-
 
 let name = document.querySelector("#title").value;
 let author = document.querySelector("#author").value;
@@ -64,13 +64,9 @@ captureInput.reset();
 myLibrary.push(newBook);
 
 
-
-
-for(let i = 0; i < 1; i++) {
-
-
 const createNewRow = createTable.insertRow();
-const createNewCell = createNewRow.insertCell()
+const createNewCell = createNewRow.insertCell();
+
 createNewCell.textContent = myLibrary.at(-1).name;
 createNewCell.style.border = "1px solid black";
 const createNewCellOne = createNewRow.insertCell()
@@ -82,12 +78,8 @@ createNewCellTwo.style.border = "1px solid black";
 const createNewCellThree = createNewRow.insertCell()
 createNewCellThree.textContent = myLibrary.at(-1).read;
 createNewCellThree.style.border = "1px solid black";
-createTable.append(createNewCell, createNewCellOne, createNewCellTwo, createNewCellThree);
-
-
-}
-
-
+createNewRow.append(createNewCell, createNewCellOne, createNewCellTwo, createNewCellThree);
+createTable.appendChild(createNewRow);
 
 })
 
