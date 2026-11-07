@@ -62,6 +62,7 @@ console.log(newBook);
 captureInput.reset();   
 
 myLibrary.push(newBook);
+let bookID = myLibrary.at(-1).id;
 
 
 const createNewRow = createTable.insertRow();
@@ -78,8 +79,32 @@ createNewCellTwo.style.border = "1px solid black";
 const createNewCellThree = createNewRow.insertCell()
 createNewCellThree.textContent = myLibrary.at(-1).read;
 createNewCellThree.style.border = "1px solid black";
+createNewRow.dataset.id = bookID;
+
 createNewRow.append(createNewCell, createNewCellOne, createNewCellTwo, createNewCellThree);
 createTable.appendChild(createNewRow);
+
+const createButton = document.createElement("button");
+createButton.dataset.id = bookID;
+createButton.textContent = "Remove Book";
+
+createButton.addEventListener("click", () => {
+
+myLibrary.forEach((element, index) => {
+
+if(element.id === createButton.dataset.id) {
+
+myLibrary.splice(index, 1);
+
+
+}
+
+
+})
+
+})
+
+createNewRow.appendChild(createButton);
 
 })
 
