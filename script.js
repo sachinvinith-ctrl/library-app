@@ -99,6 +99,16 @@ myLibrary.splice(index, 1);
 
 }
 
+})
+
+const deleteTable = document.querySelectorAll("tr");
+deleteTable.forEach((element, index) => {
+
+if(element.dataset.id === createButton.dataset.id) {
+
+createTable.deleteRow(index);
+
+}
 
 })
 
