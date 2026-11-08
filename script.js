@@ -1,22 +1,14 @@
 const myLibrary = [];
 
-
 function bookConstructor(name, author, pages, read) {
+  this.id = crypto.randomUUID();
+  this.name = name;
+  this.author = author;
+  this.pages = pages;
+  this.read = read;
+}
 
-this.id = crypto.randomUUID();
-this.name = name;
-this.author = author;
-this.pages = pages;
-this.read = read;
-
-};
-
-function addBookToLibrary() {
-
-
-
-
-};
+function addBookToLibrary() {}
 
 const createTable = document.createElement("table");
 const createHeaderOne = document.createElement("th");
@@ -24,6 +16,7 @@ const createHeaderTwo = document.createElement("th");
 const createHeaderThree = document.createElement("th");
 const createHeaderFour = document.createElement("th");
 const createHeaderFive = document.createElement("th");
+const createHeaderSix = document.createElement("th");
 const createRow = document.createElement("tr");
 
 createHeaderOne.textContent = "Book Title";
@@ -36,8 +29,17 @@ createHeaderFour.textContent = "Is The Book Read?";
 createHeaderFour.style.border = "1px solid black";
 createHeaderFive.textContent = "Remove The Book";
 createHeaderFive.style.border = "1px solid black";
+createHeaderSix.textContent = "Change Book Read Status";
+createHeaderSix.style.border = "1px solid black";
 
-createRow.append(createHeaderOne, createHeaderTwo, createHeaderThree, createHeaderFour, createHeaderFive);
+createRow.append(
+  createHeaderOne,
+  createHeaderTwo,
+  createHeaderThree,
+  createHeaderFour,
+  createHeaderFive,
+  createHeaderSix,
+);
 createTable.appendChild(createRow);
 
 createTable.style.border = "1px solid black";
@@ -48,90 +50,68 @@ document.body.appendChild(createTable);
 const captureInput = document.querySelector("#form");
 
 captureInput.addEventListener("submit", (event) => {
+  event.preventDefault();
 
-event.preventDefault();
+  let name = document.querySelector("#title").value;
+  let author = document.querySelector("#author").value;
+  let pages = document.querySelector("#pages").value;
+  let read = document.querySelector("input[name='read-or-not']:checked").value;
 
-let name = document.querySelector("#title").value;
-let author = document.querySelector("#author").value;
-let pages = document.querySelector("#pages").value;
-let read = document.querySelector("input[name='read-or-not']:checked").value;
+  const newBook = new bookConstructor(name, author, pages, read);
+  console.log(newBook);
 
-const newBook = new bookConstructor(name, author, pages, read);
-console.log(newBook);
+  captureInput.reset();
 
-captureInput.reset();   
+  myLibrary.push(newBook);
+  let bookID = myLibrary.at(-1).id;
 
-myLibrary.push(newBook);
-let bookID = myLibrary.at(-1).id;
+  const createNewRow = createTable.insertRow();
+  const createNewCell = createNewRow.insertCell();
 
+  createNewCell.textContent = myLibrary.at(-1).name;
+  createNewCell.style.border = "1px solid black";
+  const createNewCellOne = createNewRow.insertCell();
+  createNewCellOne.textContent = myLibrary.at(-1).author;
+  createNewCellOne.style.border = "1px solid black";
+  const createNewCellTwo = createNewRow.insertCell();
+  createNewCellTwo.textContent = myLibrary.at(-1).pages;
+  createNewCellTwo.style.border = "1px solid black";
+  const createNewCellThree = createNewRow.insertCell();
+  createNewCellThree.textContent = myLibrary.at(-1).read;
+  createNewCellThree.style.border = "1px solid black";
+  createNewRow.dataset.id = bookID;
 
-const createNewRow = createTable.insertRow();
-const createNewCell = createNewRow.insertCell();
+  createNewRow.append(
+    createNewCell,
+    createNewCellOne,
+    createNewCellTwo,
+    createNewCellThree,
+  );
+  createTable.appendChild(createNewRow);
 
-createNewCell.textContent = myLibrary.at(-1).name;
-createNewCell.style.border = "1px solid black";
-const createNewCellOne = createNewRow.insertCell()
-createNewCellOne.textContent = myLibrary.at(-1).author;
-createNewCellOne.style.border = "1px solid black";
-const createNewCellTwo = createNewRow.insertCell()
-createNewCellTwo.textContent = myLibrary.at(-1).pages;
-createNewCellTwo.style.border = "1px solid black";
-const createNewCellThree = createNewRow.insertCell()
-createNewCellThree.textContent = myLibrary.at(-1).read;
-createNewCellThree.style.border = "1px solid black";
-createNewRow.dataset.id = bookID;
+  const createButton = document.createElement("button");
+  createButton.dataset.id = bookID;
+  createButton.textContent = "Remove Book";
 
-createNewRow.append(createNewCell, createNewCellOne, createNewCellTwo, createNewCellThree);
-createTable.appendChild(createNewRow);
+  createButton.addEventListener("click", () => {
+    myLibrary.forEach((element, index) => {
+      if (element.id === createButton.dataset.id) {
+        myLibrary.splice(index, 1);
+      }
+    });
 
-const createButton = document.createElement("button");
-createButton.dataset.id = bookID;
-createButton.textContent = "Remove Book";
+    const deleteTable = document.querySelectorAll("tr");
+    deleteTable.forEach((element, index) => {
+      if (element.dataset.id === createButton.dataset.id) {
+        createTable.deleteRow(index);
+      }
+    });
+  });
 
-createButton.addEventListener("click", () => {
+  const createNewButton = document.createElement("button");
+  createNewButton.dataset.id = bookID;
+  createNewButton.textContent = "Change Status";
+  createNewRow.append(createButton, createNewButton);
+});
 
-myLibrary.forEach((element, index) => {
-
-if(element.id === createButton.dataset.id) {
-
-myLibrary.splice(index, 1);
-
-
-}
-
-})
-
-const deleteTable = document.querySelectorAll("tr");
-deleteTable.forEach((element, index) => {
-
-if(element.dataset.id === createButton.dataset.id) {
-
-createTable.deleteRow(index);
-
-}
-
-})
-
-})
-
-createNewRow.appendChild(createButton);
-
-})
-
-
-
-function displayBooks() {
-
-
-
-
-}
-
-
-
-
-
-
-
-
-
+function displayBooks() {}

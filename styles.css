@@ -1,42 +1,26 @@
 body {
-
-min-height: 100vh;
-
+  min-height: 100vh;
 }
 
 h1 {
-
-text-align: center;
-
+  text-align: center;
 }
 
 .outer-container {
-
-display: flex;
-justify-content: center;
-
+  display: flex;
+  justify-content: center;
 }
 
-
 .form-container {
-
-border: 1px solid black;
-padding: 20px;
-
+  border: 1px solid black;
+  padding: 20px;
 }
 
 .form div > label {
-
-display: inline-block;
-width: 100px;
-
+  display: inline-block;
+  width: 100px;
 }
 
 div button {
-
-justify-self: center;
-
+  justify-self: center;
 }
-
-
-
