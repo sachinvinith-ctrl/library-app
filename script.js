@@ -8,6 +8,14 @@ function bookConstructor(name, author, pages, read) {
   this.read = read;
 }
 
+bookConstructor.prototype.toggleState = function () {
+  if (this.read === "Read") {
+    this.read = "Not-Read";
+  } else if (this.read === "Not-Read") {
+    this.read = "Read";
+  }
+};
+
 function addBookToLibrary() {}
 
 const createTable = document.createElement("table");
@@ -79,6 +87,10 @@ captureInput.addEventListener("submit", (event) => {
   const createNewCellThree = createNewRow.insertCell();
   createNewCellThree.textContent = myLibrary.at(-1).read;
   createNewCellThree.style.border = "1px solid black";
+  const createNewCellFour = createNewRow.insertCell();
+  createNewCellFour.style.border = "1px solid black";
+  const createNewCellFive = createNewRow.insertCell();
+  createNewCellFive.style.border = "1px solid black";
   createNewRow.dataset.id = bookID;
 
   createNewRow.append(
@@ -86,32 +98,44 @@ captureInput.addEventListener("submit", (event) => {
     createNewCellOne,
     createNewCellTwo,
     createNewCellThree,
+    createNewCellFour,
+    createNewCellFive,
   );
   createTable.appendChild(createNewRow);
 
-  const createButton = document.createElement("button");
-  createButton.dataset.id = bookID;
-  createButton.textContent = "Remove Book";
+  const createDeleteButton = document.createElement("button");
+  createDeleteButton.dataset.id = bookID;
+  createDeleteButton.textContent = "Remove Book";
 
-  createButton.addEventListener("click", () => {
+  createDeleteButton.addEventListener("click", () => {
     myLibrary.forEach((element, index) => {
-      if (element.id === createButton.dataset.id) {
+      if (element.id === createDeleteButton.dataset.id) {
         myLibrary.splice(index, 1);
       }
     });
 
     const deleteTable = document.querySelectorAll("tr");
     deleteTable.forEach((element, index) => {
-      if (element.dataset.id === createButton.dataset.id) {
+      if (element.dataset.id === createDeleteButton.dataset.id) {
         createTable.deleteRow(index);
       }
     });
   });
 
-  const createNewButton = document.createElement("button");
-  createNewButton.dataset.id = bookID;
-  createNewButton.textContent = "Change Status";
-  createNewRow.append(createButton, createNewButton);
+  const createStatusButton = document.createElement("button");
+  createStatusButton.dataset.id = bookID;
+  createStatusButton.textContent = "Change Status";
+
+  createStatusButton.addEventListener("click", () => {
+    myLibrary.forEach((element, index) => {
+      if (element.id === createStatusButton.dataset.id) {
+        myLibrary[index].toggleState();
+      }
+    });
+  });
+
+  createNewCellFour.append(createDeleteButton);
+  createNewCellFive.append(createStatusButton);
 });
 
 function displayBooks() {}
