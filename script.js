@@ -130,6 +130,15 @@ captureInput.addEventListener("submit", (event) => {
     myLibrary.forEach((element, index) => {
       if (element.id === createStatusButton.dataset.id) {
         myLibrary[index].toggleState();
+
+        const changeTableData = document.querySelector(
+          `tr[data-id="${createStatusButton.dataset.id}"] td:nth-of-type(4)`,
+        );
+        if (changeTableData.textContent === "Read") {
+          changeTableData.textContent = "Not-Read";
+        } else if (changeTableData.textContent === "Not-Read") {
+          changeTableData.textContent = "Read";
+        }
       }
     });
   });
